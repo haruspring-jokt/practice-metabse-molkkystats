@@ -1,0 +1,24 @@
+version: "3"
+services:
+  metabase:
+    container_name: metabase
+    image: metabase/metabase
+    ports:
+      - "3000:3000"
+    links:
+      - mysql
+  mysql:
+    container_name: metabase_mysql
+    build: ./mysql
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: molkky
+      MYSQL_USER: molkky
+      MYSQL_PASSWORD: molkky
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./log/mysql:/var/log/mysql

@@ -101,3 +101,8 @@ CREATE TABLE games (
 
 MySQLのCSVインポート機能を使ってデータをインストールする。
 
+```sql
+-- ./docker/log/mysql 内に games.csv というファイル名でcsvを保存しておく
+-- MySQLコンテナ内でMySQLコンソールを起動し、以下を実行
+LOAD DATA LOCAL INFILE "/var/log/mysql/games.csv " INTO TABLE games FIELDS TERMINATED BY ',' ignore 1 lines;
+```

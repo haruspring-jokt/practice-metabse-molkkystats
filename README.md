@@ -36,12 +36,6 @@ http://localhost:3000/
 
 ![](https://i.imgur.com/Mdw7IhP.jpg)
 
-### データの格納
-
-あとで
-
-モルック練習のスプレッドシートをCSVに変換してDBにINSERTする予定
-
 ### 初期設定
 
 `docker-compose.yml`に書いた接続情報に応じて入力する
@@ -51,3 +45,59 @@ http://localhost:3000/
 ダッシュボードが表示される。まだデータを突っ込んでいなのでなにもみれないけど、サンプルのデータセットがあるので遊んだりなんとなくの使い方を把握できると思います
 
 ![](https://i.imgur.com/vusIMp0.jpg)
+
+### データの格納
+
+あとで
+
+モルック練習のスプレッドシートをCSVに変換してDBにINSERTする予定
+
+[練習データのスプレッドシート](https://docs.google.com/spreadsheets/d/1xkdWbgpjnIVcBiPV5m-Q8oKwtMQ4arF65qe6RDvUikM/edit?usp=sharing)からcsvファイルをエクスポートする
+
+本当はもっとテーブルを正規化すべきだが、面倒だったので使用するモルック棒（重さが違うので練習ごとに返るようにしています）のテーブルのみ別出しする
+
+```sql
+CREATE TABLE color (
+    id INT NOT NULL,
+    color VARCHAR(32) NOT NULL,
+    `name` VARCHAR(32) NOT NULL,
+    kind VARCHAR(32) NOT NULL,
+    `weight` INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE games (
+    id INT NOT NULL,
+    `date` DATETIME,
+    `match` INT,
+    teams INT,
+    rule VARCHAR(32),
+    win_point INT,
+    place VARCHAR(128),
+    `condition` VARCHAR(32),
+    weather VARCHAR(32),
+    temperature INT,
+    color VARCHAR(32),
+    game_num INT,
+    shot_count INT,
+    ace_count INT,
+    mistake_count INT,
+    first_shot_score INT,
+    finished_turn INT,
+    three_mistake_count INT,
+    fifty_over_count INT,
+    vertical_shot_count INT,
+    vertical_ace_count INT,
+    back_shot_count INT,
+    back_ace_count INT,
+    comment VARCHAR(1000),
+    won_team_num INT,
+    photo_url VARCHAR(1000),
+    PRIMARY KEY (id)
+);
+```
+
+上のように、先にテーブルを作成しておく。
+
+MySQLのCSVインポート機能を使ってデータをインストールする。
+

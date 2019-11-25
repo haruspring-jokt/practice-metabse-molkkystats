@@ -35,6 +35,8 @@ CREATE TABLE games (
     lob_ace_count INT,
     step_shot_count INT,
     step_ace_count INT,
+    attempt_shot_count INT,
+    attempt_ace_count INT,
     comment VARCHAR(1000),
     won_team_num INT,
     photo_url VARCHAR(1000),

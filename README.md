@@ -4,6 +4,8 @@
 - モルックというスーパーマイナーだけど面白いスポーツの練習をデータに残しているので、それを可視化できればと思っています
   - [モルックってなんじゃい](https://molkky.jp/molkky/)
 
+![](https://i.imgur.com/wVk1Jit.jpg)
+
 ## 参考
 
 - https://qiita.com/ITNewcomer/items/73173f032af29175dacd

@@ -1,6 +1,6 @@
 # 概要
 
-- metabaseを使ってみたかった
+- Metabaseを使ってみたかった
 - モルックというマイナーだけど面白いスポーツの練習をデータに残しているので、それを可視化できればと思っています
   - [モルックってなんじゃい](https://molkky.jp/molkky/)
 
@@ -23,7 +23,7 @@ ProductVersion: 10.15.1
 BuildVersion:   19B88
 ```
 
-metabaseとMySQLはDocker for Macでイメージを落として使っています
+MetabaseとMySQLはDocker for Macでイメージを落として使っています
 
 ## 作業メモ
 
@@ -37,8 +37,8 @@ docker-compose images
 
   Container         Repository        Tag       Image Id      Size 
 -------------------------------------------------------------------
-metabase         metabase/metabase   latest   3e5e484c4aa7   515 MB
-metabase_mysql   mysql               5.7.22   6bb891430fb6   355 MB
+Metabase         Metabase/Metabase   latest   3e5e484c4aa7   515 MB
+Metabase_mysql   mysql               5.7.22   6bb891430fb6   355 MB
 
 # mysql接続
 mysql --host=127.0.0.1 --port=3306 --user=molkky --password
@@ -61,10 +61,6 @@ http://localhost:3000/
 ![](https://i.imgur.com/vusIMp0.jpg)
 
 ### データの格納
-
-あとで
-
-モルック練習のスプレッドシートをCSVに変換してDBにINSERTする予定
 
 [予め記録しておいた練習データのスプレッドシート](https://docs.google.com/spreadsheets/d/1xkdWbgpjnIVcBiPV5m-Q8oKwtMQ4arF65qe6RDvUikM/edit?usp=sharing)からcsvファイルをエクスポートする
 
@@ -126,7 +122,7 @@ MySQLのCSVインポート機能を使ってデータをインストールする
 ```bash
 # ./docker/log/mysql 内に games.csv というファイル名でcsvを保存しておく
 
-docker exec -it metabase_mysql bash
+docker exec -it Metabase_mysql bash
 
 mysql -u molkky -p
 
@@ -142,13 +138,13 @@ mysql> LOAD DATA LOCAL INFILE "/var/log/mysql/games.csv " INTO TABLE games FIELD
 
 ### ダッシュボードの確認
 
-データが追加されていることをmetabaseで確認する（表形式で閲覧できる）。
+データが追加されていることをMetabaseで確認する（表形式で閲覧できる）。
 
 ![](https://i.imgur.com/BahuteU.jpg)
 
 ![](https://i.imgur.com/78r1xvl.jpg)
 
-`見てみる Games テーブル`から、metabaseが自動的に作成したチャートを見ることができる。
+`見てみる Games テーブル`から、Metabaseが自動的に作成したチャートを見ることができる。
 
 ![](https://i.imgur.com/NSyb7k7.jpg)
 
@@ -170,6 +166,6 @@ mysql> LOAD DATA LOCAL INFILE "/var/log/mysql/games.csv " INTO TABLE games FIELD
 
 ## 補足など
 
-### テーブルのスキーマ変更をmetabseに反映する
+### テーブルのスキーマ変更をMetabaseに反映する
 
-カラム追加をしたときなど、すぐにはmetabase上に反映されなかったので、`設定 -> 管理者 -> データベース -> {変更したデータベース名}`に進み、`今すぐデータベーススキーマと同期する`を選択することで反映される模様（ということは、しばらく待っていれば自動的に反映されるのか？ということについては未検証）。
+カラム追加をしたときなど、すぐにはMetabase上に反映されなかったので、`設定 -> 管理者 -> データベース -> {変更したデータベース名}`に進み、`今すぐデータベーススキーマと同期する`を選択することで反映される模様（ということは、しばらく待っていれば自動的に反映されるのか？ということについては未検証）。

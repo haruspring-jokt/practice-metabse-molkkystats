@@ -1,10 +1,12 @@
 # 概要
 
 - metabaseを使ってみたかった
-- モルックというスーパーマイナーだけど面白いスポーツの練習をデータに残しているので、それを可視化できればと思っています
+- モルックというマイナーだけど面白いスポーツの練習をデータに残しているので、それを可視化できればと思っています
   - [モルックってなんじゃい](https://molkky.jp/molkky/)
 
-![](https://i.imgur.com/wVk1Jit.jpg)
+2019-12-16時点で以下のようなダッシュボードを作ってみました。そんな深くまで調べずに使ってみたので、基本中の基本までしか触れられていないと思います
+
+![](https://i.imgur.com/Vnb8KPD.jpg)
 
 ## 参考
 
@@ -64,11 +66,12 @@ http://localhost:3000/
 
 モルック練習のスプレッドシートをCSVに変換してDBにINSERTする予定
 
-[練習データのスプレッドシート](https://docs.google.com/spreadsheets/d/1xkdWbgpjnIVcBiPV5m-Q8oKwtMQ4arF65qe6RDvUikM/edit?usp=sharing)からcsvファイルをエクスポートする
+[予め記録しておいた練習データのスプレッドシート](https://docs.google.com/spreadsheets/d/1xkdWbgpjnIVcBiPV5m-Q8oKwtMQ4arF65qe6RDvUikM/edit?usp=sharing)からcsvファイルをエクスポートする
 
 本当はもっとテーブルを正規化すべきだが、面倒だったので使用するモルック棒（重さが違うので練習ごとに返るようにしています）のテーブルのみ別出しする
 
 ```sql
+-- 複数のモルック棒を所持しているので、それぞれの重さや色（テープを貼って判別している）などを管理するマスタ
 CREATE TABLE color (
     id INT NOT NULL,
     color VARCHAR(32) NOT NULL,
@@ -78,6 +81,7 @@ CREATE TABLE color (
     PRIMARY KEY (id)
 );
 
+-- ゲーム単位で記録しているので、そのデータテーブル
 CREATE TABLE games (
     id INT NOT NULL,
     `date` DATETIME,
@@ -138,9 +142,11 @@ mysql> LOAD DATA LOCAL INFILE "/var/log/mysql/games.csv " INTO TABLE games FIELD
 
 ### ダッシュボードの確認
 
-データが追加されていることをmetabaseで確認する。
+データが追加されていることをmetabaseで確認する（表形式で閲覧できる）。
 
 ![](https://i.imgur.com/BahuteU.jpg)
+
+![](https://i.imgur.com/78r1xvl.jpg)
 
 `見てみる Games テーブル`から、metabaseが自動的に作成したチャートを見ることができる。
 
@@ -148,9 +154,19 @@ mysql> LOAD DATA LOCAL INFILE "/var/log/mysql/games.csv " INTO TABLE games FIELD
 
 ### 自分でチャートを作成する
 
-当然、上の自動走査（X-RAY）ではほしいチャートはすべて見つからないので、自分で作成していく
+当然、上の自動走査（X-RAY）ではほしいチャートはすべて見つからないので、自分で作成していく。
 
-TBD
+ヘッダーの「照会する」を選択、作り方を選ぶ（大抵はカスタム質問かネイティブクエリ）
+
+カスタム質問の場合は、以下のようにGUIで編集できる
+
+![](https://i.imgur.com/ZiEAjV1.jpg)
+
+プレビューしながらいい感じに作れたら、「ビジュアライズ」でグラフや表など、どういう形で見せたいのかを決める
+
+![](https://i.imgur.com/bJH8Jpm.jpg)
+
+見せ方が決まったら「保存」して、ダッシュボードに配置などする
 
 ## 補足など
 

@@ -122,7 +122,7 @@ MySQLのCSVインポート機能を使ってデータをインストールする
 ```bash
 # ./docker/log/mysql 内に games.csv というファイル名でcsvを保存しておく
 
-docker exec -it Metabase_mysql bash
+docker exec -it metabase_mysql bash
 
 mysql -u molkky -p
 

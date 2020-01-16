@@ -40,5 +40,28 @@ CREATE TABLE games (
     comment VARCHAR(1000),
     won_team_num INT,
     photo_url VARCHAR(1000),
+    cate VARCHAR(32),
+    MY_TEAM_NUM INT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE pinpoint (
+    id INT NOT NULL,
+    `date` DATETIME,
+    weather VARCHAR(32),
+    `condition` VARCHAR(32),
+    color VARCHAR(32),
+    350_ace INT,
+    350_shot INT,
+    450_ace INT,
+    450_shot INT,
+    500_ace INT,
+    500_shot INT,
+    650_ace INT,
+    650_shot INT,
+    800_ace INT,
+    800_shot INT,
+    950_ace INT,
+    950_shot INT,
     PRIMARY KEY (id)
 );

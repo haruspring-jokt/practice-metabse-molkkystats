@@ -41,7 +41,8 @@ CREATE TABLE games (
     won_team_num INT,
     photo_url VARCHAR(1000),
     cate VARCHAR(32),
-    MY_TEAM_NUM INT,
+    battle_my_team_num INT,
+    
     PRIMARY KEY (id)
 );
 

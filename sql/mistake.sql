@@ -1,0 +1,26 @@
+SELECT
+    "OVER",
+    SUM(MISTAKE_OVER)
+FROM
+    games
+UNION
+ALL
+SELECT
+    "SHORT",
+    SUM(MISTAKE_SHORT)
+FROM
+    games
+UNION
+ALL
+SELECT
+    "LEFT",
+    SUM(MISTAKE_LEFT)
+FROM
+    games
+UNION
+ALL
+SELECT
+    "RIGHT",
+    SUM(MISTAKE_RIGHT)
+FROM
+    games

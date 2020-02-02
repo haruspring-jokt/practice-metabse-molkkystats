@@ -23,6 +23,11 @@ CREATE TABLE games (
     shot_count INT,
     ace_count INT,
     mistake_count INT,
+    mistake_over INT,
+    mistake_short INT,
+    mistake_left INT,
+    mistake_right INT,
+    mistake_irregular INT,
     first_shot_score INT,
     finished_turn INT,
     three_mistake_count INT,
@@ -37,12 +42,13 @@ CREATE TABLE games (
     step_ace_count INT,
     attempt_shot_count INT,
     attempt_ace_count INT,
-    comment VARCHAR(1000),
     won_team_num INT,
     photo_url VARCHAR(1000),
     cate VARCHAR(32),
     battle_my_team_num INT,
-    
+    battle_my_team_order INT,
+    battle_my_team_rank INT,
+    comment VARCHAR(1000),
     PRIMARY KEY (id)
 );
 
@@ -64,5 +70,6 @@ CREATE TABLE pinpoint (
     800_shot INT,
     950_ace INT,
     950_shot INT,
+    comment VARCHAR(1000),
     PRIMARY KEY (id)
 );

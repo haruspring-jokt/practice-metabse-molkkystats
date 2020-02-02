@@ -66,56 +66,7 @@ http://localhost:3000/
 
 本当はもっとテーブルを正規化すべきだが、面倒だったので使用するモルック棒（重さが違うので練習ごとに返るようにしています）のテーブルのみ別出しする
 
-```sql
--- 複数のモルック棒を所持しているので、それぞれの重さや色（テープを貼って判別している）などを管理するマスタ
-CREATE TABLE color (
-    id INT NOT NULL,
-    color VARCHAR(32) NOT NULL,
-    `name` VARCHAR(32) NOT NULL,
-    kind VARCHAR(32) NOT NULL,
-    `weight` INT NOT NULL,
-    PRIMARY KEY (id)
-);
-
--- ゲーム単位で記録しているので、そのデータテーブル
-CREATE TABLE games (
-    id INT NOT NULL,
-    `date` DATETIME,
-    `match` INT,
-    teams INT,
-    rule VARCHAR(32),
-    win_point INT,
-    place VARCHAR(128),
-    `condition` VARCHAR(32),
-    weather VARCHAR(32),
-    temperature INT,
-    color VARCHAR(32),
-    game_num INT,
-    shot_count INT,
-    ace_count INT,
-    mistake_count INT,
-    first_shot_score INT,
-    finished_turn INT,
-    three_mistake_count INT,
-    fifty_over_count INT,
-    vertical_shot_count INT,
-    vertical_ace_count INT,
-    back_shot_count INT,
-    back_ace_count INT,
-    lob_shot_count INT,
-    lob_ace_count INT,
-    step_shot_count INT,
-    step_ace_count INT,
-    attempt_shot_count INT,
-    attempt_ace_count INT,
-    comment VARCHAR(1000),
-    won_team_num INT,
-    photo_url VARCHAR(1000),
-    PRIMARY KEY (id)
-);
-```
-
-上のように、先にテーブルを作成しておく。
+テーブルを`docker/mysql/initdb.d/schema.sql`に従って作成する。
 
 MySQLのCSVインポート機能を使ってデータをインストールする。
 

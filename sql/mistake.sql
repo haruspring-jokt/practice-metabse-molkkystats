@@ -1,4 +1,11 @@
 SELECT
+    "CATE",
+    0
+FROM
+    dual
+UNION
+ALL
+SELECT
     "OVER",
     SUM(MISTAKE_OVER)
 FROM
@@ -22,5 +29,12 @@ ALL
 SELECT
     "RIGHT",
     SUM(MISTAKE_RIGHT)
+FROM
+    games
+UNION
+ALL
+SELECT
+    "IRREGULAR",
+    SUM(mistake_irregular)
 FROM
     games

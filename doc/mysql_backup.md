@@ -7,5 +7,5 @@ $ mysqldump --single-transaction -u molkky -p molkky > /var/log/mysql/backup/fil
 ## リストア
 
 ```bash
-$ mysql -u molkky -p molkky
+$ mysql -u molkky -p molkky < {dumpファイル名}
 ```

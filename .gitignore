@@ -2,3 +2,6 @@
 *.csv
 molkky_metabase.code-workspace
 *.bk
+*.dump
+*.mv.db
+*.trace.db

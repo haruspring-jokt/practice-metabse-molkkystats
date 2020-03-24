@@ -5,3 +5,4 @@ molkky_metabase.code-workspace
 *.dump
 *.mv.db
 *.trace.db
+env/
